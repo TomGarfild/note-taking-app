@@ -1,3 +1,5 @@
+using NoteTakingApp.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -11,13 +13,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
-app.MapGet("/notes", () =>
-    {
-        return string.Empty;
-    })
-    .WithName("GetNotes")
-    .WithOpenApi();
+app.AddNotesEndpoints();
 
 app.Run();
